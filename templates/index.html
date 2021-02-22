@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>CitibikeVSCovid</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/superhero/bootstrap.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+  <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body>
+  <div class="wrapper">
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <a class="navbar-brand" style="color:white" href="">Citibike VS Covid-19 Model</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link" style="color:white" href="firstwave">First Wave Analysis (MAP)</a>
+          <a class="nav-item nav-link" style="color:white" href="secondwave">Second Wave Analysis (MAP)</a>
+        </div>
+      </div>
+    </nav>
+    <div class="hero text-center">
+      <h1>New York</h1>
+      <p>Citibike vs Covid-19</p>
+    </div>
+    <div class="container">
+      <div class="row margin-top-50">
+        <div class="col-md-3">
+          <aside class="filters">
+            <div class="panel panel-default">
+              <div class="panel-heading">Prediction of number of trip using Second Wave Linear Model</div>
+              <div class="panel-body">
+                <form autocomplete="off" action="/action_page.php">
+                  <div class="form-group">
+                    <ul class="list-group" id="filters">
+                      <li class="filter list-group-item">      
+                        <form action="/action_page.php">
+                           <label for="cases">Number of Cases</label>
+                           <Select class="container-fluid" id="cases">
+                              <option value=500>500</option>
+                              <option value="1000">1000</option>
+                              <option value="1500">1500</option>
+                              <option value="2000">2000</option>
+                              <option value="2500">2500</option>
+                              <option value="3000">3000</option>
+                              <option value="3500">3500</option>
+                              <option value="4000">4000</option>
+                              <option value="4500">4500</option>
+                              <option value="5000">5000</option>
+                              <option value="5500">5500</option>
+                              <option value="6000">6000</option>
+                              <option value="6500">6500</option>
+                            </select>
+                         <table id="covid_table" class="table table-bordered">
+                           <thead class="container-fluid">
+                             <tr>
+                               <th class="table-head">cases</th>
+                               <th class="table-head">trips</th>
+                               <th class="table-head">reduced_by</th>
+                             </tr>
+                           </thead>
+                           <tbody></tbody>
+                         </table>
+                      </li>
+                    </ul>
+                  </div>
+                  <button id="filter-btn" type="button" class="btn btn-default" color = "white">Filter Table</button>
+                  <button onclick="document.getElementById('datetime').value = ''" id="reset-btn" type="button" class="btn btn-default">Reset Table</button>
+                 </form>
+                </form>
+              </div>
+            </div>
+          </aside>
+        </div>
+        <div class="col-md-9">
+          <div id="table-area" class="">
+            <div class="container-fluid">
+            <h1>First Wave and Second Wave Line Graphs</h1>
+            <img class="container-fluid" src='static\\images\linegraph.jpg' alt="First Wave Line Graph" max-width: 100% max-height=100%>
+            <br></br>
+            <p>Graph above show average covid-19 cases for the past 7 days and average no of of trip for the past 7 days from March 2020 to June 2020. As we can see from the graph when the cases gone up, no of trip gone down. Vice versa, when the cases decrease, the no of trip gone up. In the month of April which the case number reached the peak, the no of of trip reached the lowest point as well. The number of trips increases as the number of cases decreases after the cases reached the peak in April.  </p>
+            <img class="container-fluid" src='static\images\secondwavelinegraph.jpg' alt="Second Wave Line Graph" max-width: 100% max-height=100%>
+            <br></br>
+            <p>Analysing second wave which started in December 20 to January 21, we can see the pattern is slightly different from first wave. As we can see in the month of January 21, eventhough the cases gone up, the no of trip also haven't gone down. Although there is a big drop   </p>
+            <h1>First Wave and Second Wave Model</h1>
+            <img class="container-fluid" src='static\images\model.jpg' alt="Model" max-width: 100% max-height=100%>
+            <br></br>
+            <p>Using Scikit learn to perform machine learning about the first wave and second wave, we can see from the Support Vector Regression graph above, the linear model is best fit as the data is very close to the model. Analysing the linear regression, the training score is 0.7805 and the testing score is 0.6973 for first wave. For the second wave, the training score is onl 0.6742 and the testing score is only 0.67649. 
+            The first wave score is higher than second wave. This again prove that the covid-19 in first wave have got bigger impact in Citibike compared to second wave. In the prediction tool, it is predicting what would be the number of trip if there is third wave. The prediction tool is using the second wave model linear model to predict the number of trips as it will be more realistic to use the latest data. 
+            The prediction tool reduced by is comparing the predicted trips to last year average number of trips between Oct 19 to Jan 20.
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="footer">
+      <span class="bottom">New York Citibike vs Covid-19</span>
+    </footer>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.11.0/d3.js"></script>
+  <script src="static/js/data.js"></script>
+  <script src="static/js/app.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+</body>
+
+</html>
+
