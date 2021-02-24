@@ -37,7 +37,7 @@ app = Flask(__name__)
 # Flask Routes
 #################################################
 
-@app.route("/")
+@app.route("/index")
 def index():
     return render_template('index.html')
 
